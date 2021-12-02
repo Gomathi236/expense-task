@@ -46,40 +46,45 @@ router.get('/home', function(req, res, next) {
 });
  
 router.post('/income', function(req, res, next) {
-  let data =req.body;
-  var date = req.body.date;
-  var source = req.body.source;
-  var description = req.body.description;
-  var amount = req.body.amount;
+  let data =req.body || null;
+  var date = req.body.date || null;
+  var source = req.body.source || null;
+  var description = req.body.description || null;
+  var amount = req.body.amount || null;
   var sql = `INSERT INTO income (date, source, description, amount) VALUES ("${date}", "${source}", "${description}", "${amount}")`;
   connection.query(sql, function(err, result) {
     if (err) throw err;
     console.log('record inserted');
     req.flash('success', 'Data added successfully!');
-    res.redirect("/income");
+    res.redirect("/home");
   });
 });
 
 
 //addsource
 
-router.get("/addsource", function(req,res){
-  res.render("addsource")
-})
-router.get("/income",function(req,res){
-res.render("income")
-})
-router.post("addsource",function(req,res){
-var type = req.body.type;
-console.log(req.body);
-var sql = `INSERT INTO income_type (type) VALUES ("${type}")`;
+router.get("/addsource", function (req, res, next) {
+  res.render("addsource");
+});
+router.get("/income", function (req, res, next) {
+  res.render("income");
+});
+
+router.post("/addsource", function (req, res, next) {
+  var type = req.body.type;
+  
+  console.log(req.body);
+
+  var sql = `INSERT INTO income_type (type) VALUES ("${type}")`;
   connection.query(sql, function (err, result) {
     if (err) throw err;
     console.log("record inserted");
     req.flash("success", "Data added successfully!");
-res.render("income",{data: req.body});
-})
+
+    res.render("income",{data :  req.body})
+  });
 });
+
 
 //expenses
 router.get("/expenses", function (req, res, next) {

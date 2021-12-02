@@ -4,6 +4,14 @@
         <link rel="stylesheet" href="/public/css/income.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
+    <script>
+        function show(){
+            document.getElementById("type").innerHTML = type;
+        }
+
+
+    </script>
+
     
     <body>
         <h1>SOURCE OF INCOME</h1><br/>
@@ -25,14 +33,14 @@
                     <label><b>Source Of Income :</b></label><br/>
                 </td>
                 <td>
-                    <input type="text" class="input-field" name="source" id="source" placeholder="<%= data.type %>">
+                    <input type="text" class="input-field" name="type" id="source" >
                     
                    &nbsp; &nbsp;&nbsp;<a href="/addsource"> <i class="fa fa-plus" style="font-size:24px"></i></a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label for="description" ><b>Description :</b></label><br/>
+                    <label for="description"><b>Description :</b></label><br/>
                 </td>
                 <td>
                     <textarea class="input-field" name="description" ></textarea>
